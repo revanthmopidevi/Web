@@ -78,6 +78,3 @@ if __name__ == "__main__":
 # driver.find_element_by_xpath("""//*[@id="DERIVED_CLS_DTL_NEXT_PB$75$"]""").click()
 # time.sleep(0.5)
 # driver.find_element_by_xpath("""//*[@id="DERIVED_REGFRM1_SSR_PB_SUBMIT"]""").click()
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# old code
-# login button == driver.find_element_by_xpath("""/html/body/table/tbody/tr[2]/td/table/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr[1]/td/table[2]/tbody/tr[4]/td[3]/input""").click()
