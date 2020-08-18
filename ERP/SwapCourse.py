@@ -5,8 +5,10 @@ from selenium.webdriver.support.ui import WebDriverWait as wait
 import time
 from selenium.common.exceptions import NoSuchElementException
 
-if __name__ == "__main__:
+if __name__ == "__main__":
         while True:
+                # path to chrome driver
+                # make sure the driver version matches google chrome's version
                 driver = webdriver.Chrome('C:\\chromedriver.exe')
                 # ERP login page 
                 driver.get('https://sis.erp.bits-pilani.ac.in/psp/sisprd/?cmd=login')
@@ -24,8 +26,10 @@ if __name__ == "__main__:
                                 driver.find_element_by_xpath("""//*[@id="DERIVED_REGFRM1_SSR_PB_SRCH$41$"]""").click()
                                 time.sleep(1)
                                 driver.find_element_by_name("CLASS_SRCH_WRK2_SUBJECT$64$")
+                                # select course discipline (CS, EEE, ECE, INSTR, FIN, ECON etc.) by changing option[num]
                                 driver.find_element_by_xpath("""//*[@id="CLASS_SRCH_WRK2_SUBJECT$64$"]/option[6]""").click()
                                 time.sleep(1)
+                                # course code
                                 driver.find_element_by_xpath("""//*[@id="CLASS_SRCH_WRK2_CATALOG_NBR$72$"]""").send_keys("F372")
                                 driver.find_element_by_xpath("""//*[@id="CLASS_SRCH_WRK2_SSR_PB_CLASS_SRCH"]""").click()
                                 time.sleep(1)
@@ -38,9 +42,25 @@ if __name__ == "__main__:
                                                 driver.find_element_by_xpath("""//*[@id="DERIVED_CLS_DTL_NEXT_PB$75$"]""").click()
                                                 time.sleep(1)
                                                 driver.find_element_by_xpath("""//*[@id="DERIVED_REGFRM1_SSR_PB_SUBMIT"]""").click()
-                                                print("SWAP SUCCESFUL.")
+                                                print("\nSWAP SUCCESFUL.\n")
                                                 break
                                 except NoSuchElementException:
                                     driver.close()
                 except NoSuchElementException:
                         driver.close()
+
+
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# elems = driver.find_element_by_xpath("""//*[@id="CLASS_SRCH_WRK2_SSR_PB_SELECT$0"]""")
+
+# if len(elems) > 0 and elems[0].is_displayed():
+#     elems[0].click()
+#     print("SWAP SUCCESFUL.")
+# else: 
+#     print ("NO LINK FOUND")
+# driver.find_element_by_xpath("""//*[@id="CLASS_SRCH_WRK2_SSR_PB_SELECT$0"]""").click()
+
+# time.sleep(0.5)
+# driver.find_element_by_xpath("""//*[@id="DERIVED_CLS_DTL_NEXT_PB$75$"]""").click()
+# time.sleep(0.5)
+# driver.find_element_by_xpath("""//*[@id="DERIVED_REGFRM1_SSR_PB_SUBMIT"]""").click()
