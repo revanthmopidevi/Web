@@ -9,17 +9,18 @@ import time
 PATH = "C:\\chromedriver.exe"
 driver = webdriver.Chrome(PATH)
 
-def main(flag = False):        
+def main():        
         erp_login_link = "https://sis.erp.bits-pilani.ac.in/psp/sisprd/?cmd=login"
         erp_swap_link = ""
         userID, password = "41120170280", "5NJU*5iL"
         toDrop = "HSS F244: CRIME AND NEW MEDIA"
         toPick = "F372"
-        while not flag:
+        while True:
                 login(erp_login_link, userID, password)
-                flag = swap(erp_swap_link,toDrop, toPick)
-                if flag:
-                        print("\nCOURSE SWAP SUCCESFUL.\n")
+                if swap(erp_swap_link,toDrop, toPick):
+                        print("COURSE SUCCESFULLY SWAPPED.")
+                        break
+
 
 def login(erp_login_link, userID, password):
         driver.get(erp_login_link)
