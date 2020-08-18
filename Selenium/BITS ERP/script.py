@@ -11,21 +11,34 @@ driver = webdriver.Chrome(PATH)
 
 def main():        
         erp_login_link = "https://sis.erp.bits-pilani.ac.in/psp/sisprd/?cmd=login"
+        erp_login_error = "https://sis.erp.bits-pilani.ac.in/psp/sisprd/?&cmd=login&errorCode=105&languageCd=ENG"
+        erp_landing_page = "https://sis.erp.bits-pilani.ac.in/psp/sisprd/EMPLOYEE/HRMS/h/?tab=DEFAULT"
         erp_swap_link = ""
-        userID, password = "41120170280", "5NJU*5iL"
+        userID, password = "41120170280", "ZOMN^6zQ"
         toDrop = "HSS F244: CRIME AND NEW MEDIA"
         toPick = "F372"
+        if login(erp_login_link, erp_login_error, userID, password):
+                        print("SUCCESFULLY LOGGED IN.")
+        else:
+                print("YOUR USER ID AND/OR PASSWORD ARE INVALID OR ERP IS DOWN.")
+                driver.quit()
         while True:
-                login(erp_login_link, userID, password)
                 if swap(erp_swap_link,toDrop, toPick):
                         print("COURSE SUCCESFULLY SWAPPED.")
-                        break
+                        driver.quit()
+                else:
+                        print("RETRYING...")
 
-def login(erp_login_link, userID, password):
+def login(erp_login_link, erp_login_error, userID, password):
         driver.get(erp_login_link)
         driver.find_element_by_id('userid').send_keys(userID)
         driver.find_element_by_id('pwd').send_keys(password)
         driver.find_element_by_class_name('psloginbutton').click()
+        time.sleep(1)
+        if driver.current_url == erp_login_error:
+                return False
+        else:
+                return True
 
 def swap(erp_swap_link, toDrop, toPick):
         driver.get(erp_swap_link)
