@@ -6,20 +6,13 @@ import time
 from selenium.common.exceptions import NoSuchElementException
 
 def main(flag = False):
-        # https://sites.google.com/a/chromium.org/chromedriver/downloads
         PATH = "C:\\chromedriver.exe"
         driver = webdriver.Chrome(PATH)
-        #___________________________________________________________________#
         erp_login_link = "https://sis.erp.bits-pilani.ac.in/psp/sisprd/?cmd=login"
-        #___________________________________________________________________#
         erp_swap_link = ""
-        #___________________________________________________________________#
         userID, password = "41120170280", "password"
-        #___________________________________________________________________#
         toDrop = "HSS F244: CRIME AND NEW MEDIA"
-        #___________________________________________________________________#
         toPick = "F372"
-        #___________________________________________________________________#
         while not flag:
                 login(erp_login_link, userID, password)
                 flag = swap(erp_swap_link,toDrop, toPick)     
@@ -66,6 +59,8 @@ def swap(erp_swap_link, toDrop, toPick):
 if __name__ == "__main__":
         main()
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# https://sites.google.com/a/chromium.org/chromedriver/downloads
+
 # elems = driver.find_element_by_xpath("""//*[@id="CLASS_SRCH_WRK2_SSR_PB_SELECT$0"]""")
 
 # if len(elems) > 0 and elems[0].is_displayed():
