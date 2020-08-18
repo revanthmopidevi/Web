@@ -1,16 +1,18 @@
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait as wait
 import time
 from selenium.common.exceptions import NoSuchElementException
 
-def main(flag = False):
-        PATH = "C:\\chromedriver.exe"
-        driver = webdriver.Chrome(PATH)
+PATH = "C:\\chromedriver.exe"
+driver = webdriver.Chrome(PATH)
+
+def main(flag = False):        
         erp_login_link = "https://sis.erp.bits-pilani.ac.in/psp/sisprd/?cmd=login"
         erp_swap_link = ""
-        userID, password = "41120170280", "password"
+        userID, password = "41120170280", "5NJU*5iL"
         toDrop = "HSS F244: CRIME AND NEW MEDIA"
         toPick = "F372"
         while not flag:
@@ -19,9 +21,9 @@ def main(flag = False):
 
 def login(erp_login_link, userID, password):
         driver.get(erp_login_link)
-        driver.find_element_by_xpath("""//*[@id="userid"]""").send_keys(userID)
-        driver.find_element_by_xpath("""//*[@id="pwd"]""").send_keys(password)
-        driver.find_element_by_xpath("""/html/body/table/tbody/tr[2]/td/table/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr[1]/td/table[2]/tbody/tr[4]/td[3]/input""").click()
+        driver.find_element_by_id('userid').send_keys(userID)
+        driver.find_element_by_id('pwd').send_keys(password)
+        driver.find_element_by_class_name('psloginbutton').click()
 
 def swap(erp_swap_link, toDrop, toPick):
         driver.get(erp_swap_link)
@@ -74,3 +76,6 @@ if __name__ == "__main__":
 # driver.find_element_by_xpath("""//*[@id="DERIVED_CLS_DTL_NEXT_PB$75$"]""").click()
 # time.sleep(0.5)
 # driver.find_element_by_xpath("""//*[@id="DERIVED_REGFRM1_SSR_PB_SUBMIT"]""").click()
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# old code
+# login button == driver.find_element_by_xpath("""/html/body/table/tbody/tr[2]/td/table/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr[1]/td/table[2]/tbody/tr[4]/td[3]/input""").click()
