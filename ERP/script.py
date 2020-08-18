@@ -19,7 +19,7 @@ def main(flag = False):
                 login(erp_login_link, userID, password)
                 flag = swap(erp_swap_link,toDrop, toPick)
                 if flag:
-                        print("COURSE SWAP SUCCESFUL.")
+                        print("\nCOURSE SWAP SUCCESFUL.\n")
 
 def login(erp_login_link, userID, password):
         driver.get(erp_login_link)
