@@ -21,7 +21,6 @@ def main():
                         print("COURSE SUCCESFULLY SWAPPED.")
                         break
 
-
 def login(erp_login_link, userID, password):
         driver.get(erp_login_link)
         driver.find_element_by_id('userid').send_keys(userID)
@@ -63,19 +62,3 @@ def swap(erp_swap_link, toDrop, toPick):
 
 if __name__ == "__main__":
         main()
-#-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# https://sites.google.com/a/chromium.org/chromedriver/downloads
-
-# elems = driver.find_element_by_xpath("""//*[@id="CLASS_SRCH_WRK2_SSR_PB_SELECT$0"]""")
-
-# if len(elems) > 0 and elems[0].is_displayed():
-#     elems[0].click()
-#     print("SWAP SUCCESFUL.")
-# else: 
-#     print ("NO LINK FOUND")
-# driver.find_element_by_xpath("""//*[@id="CLASS_SRCH_WRK2_SSR_PB_SELECT$0"]""").click()
-
-# time.sleep(0.5)
-# driver.find_element_by_xpath("""//*[@id="DERIVED_CLS_DTL_NEXT_PB$75$"]""").click()
-# time.sleep(0.5)
-# driver.find_element_by_xpath("""//*[@id="DERIVED_REGFRM1_SSR_PB_SUBMIT"]""").click()
