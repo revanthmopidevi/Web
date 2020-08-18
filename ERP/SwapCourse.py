@@ -7,13 +7,13 @@ from selenium.common.exceptions import NoSuchElementException
 
 if __name__ == "__main__":
         while True:
-                # path to chrome driver
-                # make sure the driver version matches google chrome's version
+                # webdriver version == google chrome's version
+                # https://sites.google.com/a/chromium.org/chromedriver/downloads
                 driver = webdriver.Chrome('C:\\chromedriver.exe')
                 # ERP login page 
                 driver.get('https://sis.erp.bits-pilani.ac.in/psp/sisprd/?cmd=login')
                 driver.find_element_by_xpath("""//*[@id="userid"]""").send_keys("41120170280")
-                driver.find_element_by_xpath("""//*[@id="pwd"]""").send_keys("5NJU*5iL")
+                driver.find_element_by_xpath("""//*[@id="pwd"]""").send_keys("password")
                 driver.find_element_by_xpath("""/html/body/table/tbody/tr[2]/td/table/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr[1]/td/table[2]/tbody/tr[4]/td[3]/input""").click()
                 # ERP swap page
                 driver.get("")
