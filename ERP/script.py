@@ -17,7 +17,9 @@ def main(flag = False):
         toPick = "F372"
         while not flag:
                 login(erp_login_link, userID, password)
-                flag = swap(erp_swap_link,toDrop, toPick)     
+                flag = swap(erp_swap_link,toDrop, toPick)
+                if flag:
+                        print("COURSE SWAP SUCCESFUL.")
 
 def login(erp_login_link, userID, password):
         driver.get(erp_login_link)
