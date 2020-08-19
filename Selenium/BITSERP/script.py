@@ -18,13 +18,13 @@ def main():
         toDrop = "HSS F244: CRIME AND NEW MEDIA"
         toPick = "F372"
         if login(erp_login_link, erp_login_error, userID, password):
-                        print("SUCCESFULLY LOGGED IN.")
+                        print("SUCCESFULLY LOGGED IN")
         else:
-                print("YOUR USER ID AND/OR PASSWORD ARE INVALID OR ERP IS DOWN.")
+                print("YOUR USER ID AND/OR PASSWORD ARE INVALID OR ERP IS DOWN")
                 driver.quit()
         while True:
                 if swap(erp_swap_link,toDrop, toPick):
-                        print("COURSE SUCCESFULLY SWAPPED.")
+                        print("COURSE SUCCESFULLY SWAPPED")
                         driver.quit()
                 else:
                         print("RETRYING...")
