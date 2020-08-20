@@ -10,16 +10,20 @@ PATH = "C:\\chromedriver.exe"
 driver = webdriver.Chrome(PATH)
 
 def main():        
+        # erp links
         erp_login_link = "https://sis.erp.bits-pilani.ac.in/psp/sisprd/?cmd=login"
         erp_login_error = "https://sis.erp.bits-pilani.ac.in/psp/sisprd/?&cmd=login&errorCode=105&languageCd=ENG"
         erp_landing_page = "https://sis.erp.bits-pilani.ac.in/psp/sisprd/EMPLOYEE/HRMS/h/?tab=DEFAULT"
         erp_swap_link = ""
 
         # "41120170280", "ZOMN^6zQ"
+        print("THIS APPLICATION CAN REGISTER COURSES THAT HAVE ONLY LECTURE SECTIONS\n")
+        # erp credentials
         userID , password = getCredentials()
-        # toDrop = "HSS F244: CRIME AND NEW MEDIA"
+        # courses to drop and pick
         toDrop = getDropClass()
         toPick = getPickClass()
+
         if login(erp_login_link, erp_login_error, userID, password):
                         print("SUCCESFULLY LOGGED IN")
         else:
@@ -29,6 +33,7 @@ def main():
                 if swap(erp_swap_link,toDrop, toPick):
                         print("COURSE SUCCESFULLY SWAPPED")
                         driver.quit()
+                        break
                 else:
                         print("RETRYING...")
 def getCredentials():
@@ -37,7 +42,8 @@ def getCredentials():
         return userID, password
 
 def getPickClass():
-        print("EXAMPLE: CS, BITS, EEE, ECE, INSTR, ECON, FIN, MATH, HSS, GSS")
+        DeptNums = {}
+        print("EXAMPLE: BITS, CS, ECON, GS, HSS")
         classDept = input("ENTER DEPARTMENT CODE: ")
         print("EXAMPLE: F211")
         classCode = input("ENTER LAST FOUR DIGITS OF THE CLASS CODE: ")
@@ -72,7 +78,6 @@ def swap(erp_swap_link, toDrop, toPick):
                         driver.find_element_by_xpath("""//*[@id="DERIVED_REGFRM1_SSR_PB_SRCH$41$"]""").click()
                         time.sleep(1)
                         driver.find_element_by_name("CLASS_SRCH_WRK2_SUBJECT$64$")
-                        # select course discipline (CS, EEE, ECE, INSTR, FIN, ECON etc.) by changing option[num]
                         # TODO
                         driver.find_element_by_xpath("""//*[@id="CLASS_SRCH_WRK2_SUBJECT$64$"]/option[6]""").click()
                         time.sleep(1)
