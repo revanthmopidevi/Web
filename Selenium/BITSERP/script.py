@@ -14,9 +14,12 @@ def main():
         erp_login_error = "https://sis.erp.bits-pilani.ac.in/psp/sisprd/?&cmd=login&errorCode=105&languageCd=ENG"
         erp_landing_page = "https://sis.erp.bits-pilani.ac.in/psp/sisprd/EMPLOYEE/HRMS/h/?tab=DEFAULT"
         erp_swap_link = ""
-        userID, password = "41120170280", "ZOMN^6zQ"
-        toDrop = "HSS F244: CRIME AND NEW MEDIA"
-        toPick = "F372"
+
+        # "41120170280", "ZOMN^6zQ"
+        userID , password = getCredentials()
+        # toDrop = "HSS F244: CRIME AND NEW MEDIA"
+        toDrop = getDropClass()
+        toPick = getPickClass()
         if login(erp_login_link, erp_login_error, userID, password):
                         print("SUCCESFULLY LOGGED IN")
         else:
@@ -28,6 +31,24 @@ def main():
                         driver.quit()
                 else:
                         print("RETRYING...")
+def getCredentials():
+        userID = input("ENTER USER ID: ")
+        password = input("ENTER PASSWORD: ")
+        return userID, password
+
+def getPickClass():
+        print("EXAMPLE: CS, BITS, EEE, ECE, INSTR, ECON, FIN, MATH, HSS, GSS")
+        classDept = input("ENTER DEPARTMENT CODE: ")
+        print("EXAMPLE: F211")
+        classCode = input("ENTER LAST FOUR DIGITS OF THE CLASS CODE: ")
+        return {"option": classDept, "code": classCode}
+
+def getDropClass():
+        classCode = input("ENTER COURSE CODE: ").strip().upper()
+        className = input("ENTER COURSE NAME: ").strip().upper()
+        toDrop = classCode + ": " + className
+        print(f"COURSE TO DROP: '{toDrop}' ")
+        return toDrop
 
 def login(erp_login_link, erp_login_error, userID, password):
         driver.get(erp_login_link)
@@ -52,9 +73,10 @@ def swap(erp_swap_link, toDrop, toPick):
                         time.sleep(1)
                         driver.find_element_by_name("CLASS_SRCH_WRK2_SUBJECT$64$")
                         # select course discipline (CS, EEE, ECE, INSTR, FIN, ECON etc.) by changing option[num]
+                        # TODO
                         driver.find_element_by_xpath("""//*[@id="CLASS_SRCH_WRK2_SUBJECT$64$"]/option[6]""").click()
                         time.sleep(1)
-                        driver.find_element_by_xpath("""//*[@id="CLASS_SRCH_WRK2_CATALOG_NBR$72$"]""").send_keys(toPick)
+                        driver.find_element_by_xpath("""//*[@id="CLASS_SRCH_WRK2_CATALOG_NBR$72$"]""").send_keys(toPick['code'])
                         driver.find_element_by_xpath("""//*[@id="CLASS_SRCH_WRK2_SSR_PB_CLASS_SRCH"]""").click()
                         time.sleep(1)
                         try:
