@@ -23,7 +23,7 @@ def main():
         # courses to drop and pick
         toDrop = getDropClass()
         toPick = getPickClass()
-
+        print("LOGGING IN...")
         if login(erp_login_link, erp_login_error, userID, password):
                         print("SUCCESFULLY LOGGED IN")
         else:
@@ -43,9 +43,9 @@ def getCredentials():
 
 def getPickClass():
         DeptNums = {}
-        print("EXAMPLE: BITS, CS, ECON, GS, HSS")
+        # EXAMPLE: BITS, CS, ECON, GS, HSS
         classDept = input("ENTER DEPARTMENT CODE: ")
-        print("EXAMPLE: F211")
+        # EXAMPLE: F211
         classCode = input("ENTER LAST FOUR DIGITS OF THE CLASS CODE: ")
         return {"option": classDept, "code": classCode}
 
