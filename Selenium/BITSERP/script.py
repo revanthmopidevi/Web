@@ -14,7 +14,7 @@ def main():
         erp_login_link = "https://sis.erp.bits-pilani.ac.in/psp/sisprd/?cmd=login"
         erp_login_error = "https://sis.erp.bits-pilani.ac.in/psp/sisprd/?&cmd=login&errorCode=105&languageCd=ENG"
         erp_landing_page = "https://sis.erp.bits-pilani.ac.in/psp/sisprd/EMPLOYEE/HRMS/h/?tab=DEFAULT"
-        erp_swap_link = ""
+        erp_swap_link = "https://sis.erp.bits-pilani.ac.in/psp/sisprd/EMPLOYEE/HRMS/c/SA_LEARNER_SERVICES.SSR_SSENRL_SWAP.GBL?FolderPath=PORTAL_ROOT_OBJECT.CO_EMPLOYEE_SELF_SERVICE.HCCC_ENROLLMENT.HC_SSR_SSENRL_SWAP&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder"
 
         # "41120170280", "ZOMN^6zQ"
         print("THIS APPLICATION CAN REGISTER COURSES THAT HAVE ONLY LECTURE SECTIONS\n")
