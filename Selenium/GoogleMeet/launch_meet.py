@@ -27,8 +27,8 @@ except WebDriverException:
     exit()
 
 class Meet:
-    def __init__(self, meet):
-        self.meet = meet
+    def __init__(self):
+        self.meet = "https::/meet.google.com/" + sys.argv[3] 
         self.ID = sys.argv[1]
         self.password = sys.argv[2]
         self.email = self.ID + "@hyderabad.bits-pilani.ac.in"
@@ -51,10 +51,7 @@ class Meet:
         webdriver.ActionChains(driver).key_down(Keys.CONTROL).send_keys("d").perform()
         webdriver.ActionChains(driver).key_down(Keys.CONTROL).send_keys("e").perform()
         driver.execute_script("arguments[0].click();", joinnow)
-
-def main():
-    meet_link = "https://meet.google.com/ipp-wkac-zja"
-    Meet(meet_link)
+    
 
 if __name__ == "__main__":
-    main()
+    Meet()
