@@ -2,35 +2,30 @@ import sys
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
+from msedge.selenium_tools import Edge, EdgeOptions
 import time
+import datetime
 
-opt = Options()
-opt.add_argument("--disable-infobars")
-opt.add_argument("start-maximized")
-opt.add_argument("--disable-extensions")
-# Pass the argument 1 to allow and 2 to block
-opt.add_experimental_option("prefs", { \
-"profile.default_content_setting_values.media_stream_mic": 1, 
-"profile.default_content_setting_values.media_stream_camera": 1,
-"profile.default_content_setting_values.geolocation": 1, 
-"profile.default_content_setting_values.notifications": 1 
-})
+#options = Options()
+#cap = options.to_capabilities()
+#capabilities = options.to_capabilities()
+#driver = webdriver.Edge(capabilities=capabilities)
 
-try:
-    driver = webdriver.Chrome("C:\\chromedriver.exe", options=opt)
-except WebDriverException:
-    print("|| WEB DRIVER NOT FOUND, KINDLY REFER TO README ||")
-    time.sleep(5)
-    exit()
+options = EdgeOptions()
+options.set_capability("dom.webnotifications.enabled", 1)
+options.set_capability("permissions.default.microphone", 1)
+options.set_capability("permissions.default.camera", 1)
+options.use_chromium = True
+driver = Edge("C:\\msedgedriver.exe", options = options)
+#driver = webdriver.Edge("C:/MicrosoftWebDriver.exe")
 
 class Meet:
-    def __init__(self):
-        self.meet = "https::/meet.google.com/" + sys.argv[3] 
-        self.ID = sys.argv[1]
-        self.password = sys.argv[2]
+    def __init__(self, meet, ID, password):
+        self.meet = meet
+        self.ID = ID
+        self.password = password
         self.email = self.ID + "@hyderabad.bits-pilani.ac.in"
         self.googleLogin()
         self.launchMeet()
@@ -53,5 +48,16 @@ class Meet:
         driver.execute_script("arguments[0].click();", joinnow)
     
 
+def countdown(seconds = 3000):
+    while seconds >= 0:
+        seconds -= 1
+        time.sleep(1)
+    return
+
 if __name__ == "__main__":
-    Meet()
+    meet = "https://meet.google.com/" + sys.argv[2]
+    ID = f20170280
+    password = sys.argv[1]
+    Meet(meet, ID, password)
+    countdown()
+    driver.close()
